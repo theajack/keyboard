@@ -15,13 +15,17 @@ export default defineConfig(({ mode }) => {
     // console.log(mode);
     const isDev = mode === 'development';
     return {
-        base: isDev ? '/' : '/fund',
+        base: isDev ? '/' : '/keyboard',
+
         plugins: [
             legacy({
                 targets: [ 'defaults', 'not IE 11' ],
             }),
             vue(),
         ],
+        build: {
+            outDir: 'docs'
+        },
         define: {
             __DEV__: mode === 'development',
         },

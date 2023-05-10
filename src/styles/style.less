@@ -8,6 +8,7 @@ body {
     --black: rgba(0,0,0,.2);
     --black2: rgba(0,0,0,.1);
     font-family: Menlo, Monaco, "Courier New", monospace;
+    user-select: none;
 }
 .key {
     display: flex;
@@ -15,17 +16,24 @@ body {
     height: 100px;
     align-items: center;
     justify-content: center;
-    border-radius: 10px;
+    border-radius: 6px;
+    background-color: #eee;
     box-shadow: var(--offset) var(--offset) var(--width) var(--black),
                 var(--n-offset) var(--n-offset) var(--width) var(--white);
     transform: scale(1);
     transition: all .2s ease-out;
     cursor: pointer;
+    outline: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
 }
-.key:hover, .key.down {
+.key.d-item:hover, .key.down {
     transform: scale(0.95);
     box-shadow: 0 0 0 var(--black2),
         0 0 0 var(--black2),
         inset var(--offset) var(--offset) var(--width) var(--black2),
         inset var(--n-offset) var(--n-offset) var(--width) var(--white);
+}
+.is-pc .key-btn:hover{
+    background-color: #f7f7f7;
 }
