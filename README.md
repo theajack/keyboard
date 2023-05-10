@@ -8,3 +8,11 @@
 [Visit](https://theajack.github.io/keyboard)
 
 ![](https://shiyix.cn/images/keyboard.jpg)
+
+### OS
+
+The default recognition operating system displays different keyboards
+
+Windows Keyboard：?os=win
+
+MacOS Keyboard：?os=mac
