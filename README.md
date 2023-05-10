@@ -5,4 +5,6 @@
 -->
 # Nothing But A Funny Keyboard
 
-[View](https://thejack.github.io/theajack/keyboard)
+[Visit](https://thejack.github.io/theajack/keyboard)
+
+![](https://shiyix.cn/images/keyboard.jpg)

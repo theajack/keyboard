@@ -1,5 +1,13 @@
 
-export const mac = navigator.userAgent.includes('Macintosh');
+const os = getQueryString('os');
+
+export const mac = os ? (os === 'mac') : navigator.userAgent.includes('Macintosh');
+
+function getQueryString (name: string) {
+    const reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)');
+    const r = window.location.search.substr(1).match(reg);
+    if (r != null) return unescape(r[2]); return null;
+}
 
 export const isMobile = /Android|iPhone|iPad/.test(navigator.userAgent);
 
