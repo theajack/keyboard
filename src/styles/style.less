@@ -1,0 +1,31 @@
+
+body {
+    background-color: #eee;
+    --offset: 10px;
+    --n-offset: -10px;
+    --width: 20px;
+    --white: rgba(255,255,255,1);
+    --black: rgba(0,0,0,.2);
+    --black2: rgba(0,0,0,.1);
+    font-family: Menlo, Monaco, "Courier New", monospace;
+}
+.key {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    box-shadow: var(--offset) var(--offset) var(--width) var(--black),
+                var(--n-offset) var(--n-offset) var(--width) var(--white);
+    transform: scale(1);
+    transition: all .2s ease-out;
+    cursor: pointer;
+}
+.key:hover, .key.down {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 var(--black2),
+        0 0 0 var(--black2),
+        inset var(--offset) var(--offset) var(--width) var(--black2),
+        inset var(--n-offset) var(--n-offset) var(--width) var(--white);
+}
