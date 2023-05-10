@@ -106,7 +106,7 @@ export const keyboardData: any = [
         ...(mac ? [
         ] : [
             { n: '4', sn: '←', c: 'Numpad4', kc: 100 },
-            { n: '5', sn: ' ', c: 'Numpad5', kc: 101 },
+            { n: '5', sn: ' ', c: 'Numpad5', kc: 101 },
             { n: '6', sn: '→', c: 'Numpad6', kc: 102 }
         ])
     ],
@@ -258,7 +258,7 @@ export const Map = {
     ControlLeft: { kc: 17, k: 'Control', l: 1 },
     MetaLeft: { kc: 91, k: 'Meta', l: 1 },
     AltLeft: { kc: 18, k: 'Alt', l: 1 },
-    Space: { kc: 32, k: ' ', l: 0 },
+    Space: { kc: 32, k: ' ', l: 0 },
     AltRight: { kc: 18, k: 'Alt', l: 2 },
     ContextMenu: { kc: 93, k: 'ContextMenu', l: 0 },
     ControlRight: { kc: 17, k: 'Control', l: 2 },

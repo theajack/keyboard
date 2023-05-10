@@ -46,12 +46,11 @@ function clearCode (code = '') {
 window.addEventListener('keydown', e => {
     const { code, which } = e;
     // console.log('keydown', code);
-
     setCode({
         code,
         which,
-        key: e.key,
-        type: e.type
+        key: e.key === ' ' ? ' ' : e.key, // '█'
+        type: e.location
     });
     return preventDefault(e);
 });
