@@ -28,13 +28,14 @@ export const keyboardData: any = [
         { n: 'F11', c: 'F11', kc: 122 },
         { n: 'F12', mr: mac ? 0 : 10, c: 'F12', kc: 123 },
         ...(mac ? [
-            { n: '', c: 'None', d: true, gh: true },
+            { n: '', d: true, half: true, hb: true, gh: true },
         ] : [
             // { n: 'SysRq', sn: 'PrtSc', c: 'F13', kc: 124, d: true },
-            { n: 'SysRq', c: 'None', d: true },
+            { n: 'SysRq', d: true },
             { n: 'ScrLk', c: 'ScrollLock' },
-            { n: 'Break', sn: 'Pause', mr: 190, c: 'Pause' },
-            { n: '', c: 'None', d: true, gh: true },
+            { n: 'Break', sn: 'Pause', mr: 130, c: 'Pause' },
+            { n: 'Mac', c: 'SwitchMac', d: true },
+            { n: '', d: true, gh: true },
         ])
     ],
     [
@@ -148,7 +149,7 @@ export const keyboardData: any = [
             { n: 'Cmd', sn: '⌘', c: 'MetaRight', kc: 93, w: 65 },
             { n: 'Opt', sn: '⌥', c: 'AltRight', kc: 18 },
             { n: '←', c: 'ArrowLeft', half: true, kc: 37 },
-            { n: '↓', c: 'ArrowDown', half: true, kc: 40 },
+            { n: '↓', c: 'ArrowDown', half: true, hb: true, kc: 40 },
             { n: '→', c: 'ArrowRight', half: true, kc: 39 },
         ] : [
             { n: 'Alt', c: 'AltRight', kc: 18 },

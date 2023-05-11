@@ -113,7 +113,9 @@ function openGithub () {
 }
 
 function fillInfo (code = '') {
-    // todo
+    if (code === 'SwitchMac') {
+        return switchOS();
+    }
     // @ts-ignore
     const { kc, k, l } = Map[code] || { kc: '-', k: '-', l: 3 };
     setCode({
@@ -142,6 +144,11 @@ function touchEnd (code?: string) {
     clearCode(code);
 }
 
+function switchOS () {
+    const os = mac ? 'win' : 'mac';
+    location.href = `https://shiyix.cn/keyboard/?os=${os}`;
+}
+
 </script>
 
 <template>
@@ -150,7 +157,7 @@ function touchEnd (code?: string) {
     <div class="display">
       <div class="key d-item" :class="{down: info.Down}">
         <div class="d-title">Code</div>
-        <div class="d-text">{{ info.Code || '-' }}</div>
+        <div class="d-text">{{ info.Code || 'None' }}</div>
       </div>
       <div class="key d-item" :class="{down: info.Down}">
         <div class="d-title">KeyCode</div>
@@ -186,12 +193,23 @@ function touchEnd (code?: string) {
               ↑
             </div>
           </div>
+          <div v-if="mac && key.gh">
+            <div
+              class="key key-btn half" :class="{
+                'down': codes.includes('ArrowUp'),
+              }"
+              :style="{'bottom': 'auto', top: 0}"
+              @click="switchOS"
+            >
+              Win
+            </div>
+          </div>
           <div
             class="key key-btn" :class="{
               'two-line': key.tw,
               'down': codes.includes(key.c),
-              'disable': key.d,
-              'half': key.half
+              'half': key.half,
+              'bottom': key.hb,
             }"
             :style="{'margin-right': key.mr+'px', width: key.w+'px'}"
           >
@@ -215,7 +233,11 @@ function touchEnd (code?: string) {
   .white-shadow{
       color: #fff;
       text-shadow: 1px 1px 3px var(--black), 2px 2px 0 var(--black), 3px 3px 0 var(--black), 4px 4px 0 var(--black),
-      -1px -1px 3px var(--white);
+      -1px -1px 3px var(--white),
+          1px 1px 0 var(--text-border),
+          -1px 1px 0 var(--text-border),
+          1px -1px 0 var(--text-border),
+          -1px -1px 0 var(--text-border);
       font-weight: bold;
   }
   .container{
@@ -246,6 +268,7 @@ function touchEnd (code?: string) {
         gap: 20px;
         .d-title{
           .white-shadow;
+          font-size: 18px;
         }
         .d-text{
         }
@@ -257,7 +280,8 @@ function touchEnd (code?: string) {
       --width: 5px;
       padding: 30px;
       // background-color: #e8e8e8;
-      border-radius: 15px;
+      border-radius: 10px;
+      position: relative;
       box-shadow: inset var(--offset) var(--offset) var(--width) var(--black),
       inset var(--n-offset) var(--n-offset) var(--width) var(--white);
       .key-line{
@@ -273,14 +297,15 @@ function touchEnd (code?: string) {
               height: 50px;
               font-weight: bold;
               flex-direction: column;
-              font-size: 14px;
+              font-size: 15px;
+              .white-shadow;
               &.two-line{
                   position: absolute;
                   height: 110px;
               }
               .sub{
                   font-weight: normal;
-                  font-size: 12px;
+                  font-size: 14px;
               }
               &.disable{
                 background-color: #ddd;
@@ -289,6 +314,10 @@ function touchEnd (code?: string) {
                 position: absolute;
                 height: 24px;
                 bottom: 0;
+              }
+              &.half.bottom {
+                box-shadow: var(--offset) var(--offset) var(--width) var(--black),
+                var(--n-offset) 5px var(--width) var(--white);
               }
           }
       }

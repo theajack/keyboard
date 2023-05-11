@@ -11,6 +11,8 @@
 
 ### OS
 
+[Windows](https://theajack.github.io/keyboard?os=win) | [MacOS](https://theajack.github.io/keyboard?os=mac)
+
 The default recognition operating system displays different keyboards
 
 Windows Keyboard：?os=win
