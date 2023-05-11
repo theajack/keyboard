@@ -15,6 +15,14 @@ const preventDefault = (e: any) => {
     return false;
 };
 
+const history = reactive<string[]>([ '', '', '', '' ]);
+
+function addToHistory (code: string) {
+    history.unshift(code);
+    history.pop();
+    console.log(history);
+}
+
 const LocationMap = [ 'Normal', 'LeftMod', 'RightMod', '-' ];
 
 function setCode ({
@@ -23,7 +31,10 @@ function setCode ({
     key,
     type
 }: any) {
-
+    // @ts-ignore
+    if (Map[code]) {
+        addToHistory(code);
+    }
     if (!codes.includes(code)) {
         codes.push(code);
     }
@@ -172,6 +183,9 @@ function switchOS () {
         <div class="d-text">{{ info.Type }}</div>
       </div>
     </div>
+    <div class="history">
+      <div v-for="(code,index) in history" :key="index" class="h-item" :class="{key:!!code}">{{ code }}</div>
+    </div>
     <div class="keyboard" :class="{mac: mac}">
       <div v-for="(keys, index) in keyboardData" :key="index" class="key-line">
         <div
@@ -216,7 +230,7 @@ function switchOS () {
             <div v-if="key.sn && mac" class="sub">{{ key.sn }}</div>
             {{ key.n }}
             <div v-if="key.sn && !mac" class="sub">{{ key.sn }}</div>
-            <svg v-if="key.gh" style="width: 30px;" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" @click="openGithub">
+            <svg v-if="key.gh" class="github" :style="{width:mac?'18px':'26px'}" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" @click="openGithub">
               <path
                 id="right" fill="#333"
                 d="M 8 3.86 C 8.7 3.86 9.38 3.95 10 4.13 C 11.55 3.09 12.22 3.31 12.22 3.31 C 12.66 4.41 12.38 5.23 12.3 5.43 C 12.81 6 13.12 6.7 13.12 7.58 C 13.12 10.65 11.25 11.33 9.47 11.53 C 9.76 11.78 10 12.26 10 13 C 10 14.08 10 14.94 10 15.21 C 10 15.42 10.15 15.67 10.55 15.59 C 13.806 14.491 16 11.437 16 8 C 16 3.58 12.42 0 8 0 Z"
@@ -262,7 +276,7 @@ function switchOS () {
       gap: 30px;
       align-items: center;
       justify-content: center;
-      margin-bottom: 50px;
+      margin-bottom: 20px;
       .d-item{
         flex-direction: column;
         gap: 20px;
@@ -273,6 +287,21 @@ function switchOS () {
         .d-text{
         }
       }
+  }
+  .history{
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    height: 30px;
+    .h-item{
+      height: 30px;
+      width: 100px;
+    }
+    .key:first-child{
+      // transform: scale(1.1);
+      background-color: #fff;
+    }
   }
   .keyboard{
       --offset: 4px;
@@ -318,6 +347,11 @@ function switchOS () {
               &.half.bottom {
                 box-shadow: var(--offset) var(--offset) var(--width) var(--black),
                 var(--n-offset) 5px var(--width) var(--white);
+              }
+              .github{
+                border-radius: 50%;
+                box-shadow: var(--offset) var(--offset) var(--width) var(--black),
+                  var(--n-offset) var(--n-offset) var(--width) var(--white);
               }
           }
       }
